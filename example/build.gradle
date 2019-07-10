@@ -1,0 +1,29 @@
+plugins {
+
+	id 'java'
+    id 'application'
+
+}
+
+repositories {
+
+	jcenter()
+
+}
+
+dependencies {
+
+	// Internal only
+    implementation 'com.google.guava:guava:27.0.1-jre'
+
+    testImplementation 'junit:junit:4.12'
+
+   	compile project(":")
+
+}
+
+application {
+
+	mainClassName = 'example.MaingineExample'
+
+}

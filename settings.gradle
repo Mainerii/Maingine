@@ -1,1 +1,3 @@
-rootProject.name = 'Maingine'
+rootProject.name = 'maingine'
+
+include 'example'
