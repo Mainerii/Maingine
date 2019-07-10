@@ -1,0 +1,9 @@
+git stash -q --keep-index
+
+./gradlew :test -q
+
+RESULT=$?
+
+git stash pop -q
+
+exit $RESULT

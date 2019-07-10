@@ -7,7 +7,7 @@ public class MaingineTest {
 
     @Test public void testMaingineInitialization() {
 
-        assertEquals("Hello, World!", new Maingine().getGreeting());
+        new Maingine();
 
     }
 

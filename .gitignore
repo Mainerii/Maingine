@@ -4,3 +4,6 @@
 # Ignore Gradle build output directories
 build
 example/build
+
+# Ignore IDE files
+.idea
