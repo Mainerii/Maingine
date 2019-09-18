@@ -1,0 +1,7 @@
+./gradlew :checkstyleMain -q
+MAIN=$?
+
+./gradlew :checkstyleTest -q
+TEST=$?
+
+[[ $MAIN -eq 0 && $TEST -eq 0 ]] || exit 1
