@@ -1,4 +1,6 @@
-# Maingine
+# Maingine 
+
+[![Build Status](https://travis-ci.org/Mainerii/Maingine.svg?branch=master)](https://travis-ci.org/Mainerii/Maingine)
 
 A 3D Game Engine
 
