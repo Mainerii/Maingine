@@ -10,6 +10,7 @@ A 3D Game Engine
 
 <b>Build:</b> <code>./gradlew :build</code>.<br>
 <b>Test:</b> <code>./gradlew :test</code>.<br>
+<b>Check style:</b> <code>./gradlew :checkstyleMain</code>.<br>
 
 Please run the tests before and after making changes.
 
@@ -28,6 +29,7 @@ Tests can be automated by enabling hooks:<br>
 
 <b>Build:</b> <code>./gradlew :example:build</code>.<br>
 <b>Run:</b> <code>./gradlew :example:run</code>.<br>
+<b>Check style:</b> <code>./gradlew :checkstyleTest</code>.<br>
 
 <h4>Directories</h4>
 
