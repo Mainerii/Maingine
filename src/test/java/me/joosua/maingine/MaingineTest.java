@@ -1,4 +1,4 @@
-package maingine;
+package me.joosua.maingine;
 
 import org.junit.Test;
 
