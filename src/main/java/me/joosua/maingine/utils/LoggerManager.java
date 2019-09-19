@@ -2,12 +2,18 @@ package me.joosua.maingine.utils;
 
 import java.io.File;
 
+/**
+ * <p>Everything to do with Log4j logger.</p>
+ *
+ * @since unreleased
+ */
 public class LoggerManager {
 
   /**
    * <p>Sets default system properties needed for logger.</p>
    *
    * @see #prepareLogger(boolean, String[])
+   * @since unreleased
    */
   public static void prepareLogger() {
 
@@ -22,6 +28,7 @@ public class LoggerManager {
    *
    * @param folders Folders for {@link #getLogDir(String[])}
    * @see #prepareLogger()
+   * @since unreleased
    */
   public static void prepareLogger(boolean debug, String[] folders) {
 
@@ -37,6 +44,7 @@ public class LoggerManager {
    *
    * @param folders Array with each folder for log dir
    * @return Absolute path to log dir
+   * @since unreleased
    */
   public static String getLogDir(String[] folders) {
 
