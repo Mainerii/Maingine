@@ -1,5 +1,10 @@
 language: java
 
+dist: xenial
+
+services:
+  - xvfb
+
 script:
   - ./gradlew test
   - ./gradlew build
