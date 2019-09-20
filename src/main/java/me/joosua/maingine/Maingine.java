@@ -1,5 +1,6 @@
 package me.joosua.maingine;
 
+import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.utils.LoggerManager;
 import me.joosua.maingine.utils.SystemInfo;
 
@@ -24,6 +25,12 @@ public class Maingine {
     LoggerManager.prepareLogger();
 
     SystemInfo.printInfo();
+
+    if (!GlfwManager.init()) {
+      throw new IllegalStateException("GLFW couldn't be initialized");
+    }
+
+    GlfwManager.terminate();
 
   }
 
