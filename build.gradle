@@ -15,6 +15,7 @@ repositories {
 project.ext.lwjglVersion = "3.2.2"
 project.ext.jomlVersion = "1.9.16"
 project.ext.lwjglNatives = "natives-linux"
+//project.ext.lwjglNatives = "natives-windows"
 
 dependencies {
 

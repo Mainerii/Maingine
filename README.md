@@ -6,6 +6,11 @@ A 3D Game Engine
 
 <h3>Maingine development</h3>
 
+<h4>Preparation</h4>
+
+Everything is setup for Linux by default. You need to comment out
+the Linux lwjglNatives line in <i>build.gradle</i> and uncomment the Windows one.
+
 <h4>Commands</h4>
 
 <b>Build:</b> <code>./gradlew :build</code>.<br>
