@@ -1,12 +1,15 @@
 package me.joosua.maingine.glfw;
 
 import java.io.PrintStream;
+
+import me.joosua.maingine.Maingine;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.io.IoBuilder;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.system.Configuration;
 
 /**
  * <p>GlfwManager takes care of everything to do with GLFW itself (not windows).</p>
@@ -34,6 +37,8 @@ public class GlfwManager {
    * @since unreleased
    */
   public static boolean init() {
+
+    Configuration.DEBUG.set(Maingine.DEBUG);
 
     if (!GLFW.glfwInit()) {
 
