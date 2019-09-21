@@ -1,6 +1,8 @@
 package me.joosua.maingine;
 
 import me.joosua.maingine.glfw.GlfwManager;
+import me.joosua.maingine.glfw.window.Window;
+import me.joosua.maingine.settings.WindowSettings;
 import me.joosua.maingine.utils.LoggerManager;
 import me.joosua.maingine.utils.SystemInfo;
 
@@ -22,15 +24,28 @@ public class Maingine {
    *
    * @since unreleased
    */
-  public Maingine() {
+  public Maingine(WindowSettings windowSettings) {
 
     LoggerManager.prepareLogger();
 
     SystemInfo.printInfo();
 
     if (!GlfwManager.init()) {
-      throw new IllegalStateException("GLFW couldn't be initialized");
+      throw new IllegalStateException("GLFW couldn't be initialized ");
     }
+
+    Window window = new Window(windowSettings);
+
+    if (!window.isOpen()) {
+      throw new IllegalStateException("Window couldn't be created");
+    }
+
+    while(true) {
+      window.update();
+      if (false) break;
+    }
+
+    window.destroy();
 
     GlfwManager.terminate();
 

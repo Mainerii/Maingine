@@ -48,6 +48,8 @@ public class GlfwManager {
 
     }
 
+    GLFW.glfwDefaultWindowHints();
+
     // Make GLFW user Log4j logger for errors
     PrintStream logStream = IoBuilder.forLogger(logger).setLevel(Level.ERROR).buildPrintStream();
     GLFWErrorCallback.createPrint(logStream);

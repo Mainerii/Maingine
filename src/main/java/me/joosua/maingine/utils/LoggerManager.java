@@ -1,5 +1,8 @@
 package me.joosua.maingine.utils;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.io.IoBuilder;
+import org.lwjgl.system.Configuration;
 import java.io.File;
 
 /**
@@ -10,7 +13,7 @@ import java.io.File;
 public class LoggerManager {
 
   /**
-   * <p>Sets default system properties needed for logger.</p>
+   * <p>Sets default system properties and streams needed for logger.</p>
    *
    * @see #prepareLogger(boolean, String[])
    * @since unreleased
@@ -24,7 +27,7 @@ public class LoggerManager {
   }
 
   /**
-   * <p>Sets custom system properties needed for logger.</p>
+   * <p>Sets custom system properties and streams needed for logger.</p>
    *
    * @param folders Folders for {@link #getLogDir(String[])}
    * @see #prepareLogger()
@@ -34,6 +37,11 @@ public class LoggerManager {
 
     System.setProperty("log4j2.debug", "" + debug);
     System.setProperty("maingine.logger.dir", getLogDir(folders));
+
+    Configuration.DEBUG_STREAM.set(IoBuilder.forLogger("LWJGL").setLevel(Level.DEBUG).buildPrintStream());
+
+    System.setErr(IoBuilder.forLogger("Maingine").setLevel(Level.ERROR).buildPrintStream());
+    System.setOut(IoBuilder.forLogger("Maingine").setLevel(Level.DEBUG).buildPrintStream());
 
   }
 
