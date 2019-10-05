@@ -1,21 +1,40 @@
 package me.joosua.maingine.settings;
 
+import me.joosua.maingine.glfw.window.Window;
+
+/**
+ * <p>WindowSettings is a class for storing all the window's settigns.</p>
+ *
+ * <p>Nothing here affects any window immediately but the values can be passed
+ * for {@link me.joosua.maingine.glfw.window.Window Window} when creating one.</p>
+ *
+ * @since unreleased
+ */
 public class WindowSettings {
 
   private String title;
 
-  private boolean resizable;
   private boolean visible;
 
-  private int width, height;
+  // What it does and what it defaults to.
+
+  // can it be changed
+
+  // Exceptions
 
   /**
-   * <p>Sets the window title.</p>
+   * <p>Sets the window's title. By default the title is empty.</p>
    *
-   * <p>Whether the title is visible or where it's located, depends on the system.</p>
+   * <p>Title can be changed after creating the window
+   * with {@link Window#setTitle(String)}.</p>
    *
-   * @param title Title to be used
+   * <p><code>NULL</code> is treated as an empty string. Whether the
+   * title is visible or where it's located, depends on the system.</p>
+   *
+   * @param title The title to be used.
    * @see #getTitle()
+   * @see Window#setTitle(String)
+   * @since unreleased
    */
   public void setTitle(String title) {
 
@@ -24,44 +43,19 @@ public class WindowSettings {
   }
 
   /**
-   * <p>Gets the window title.</p>
+   * <p>Gets the window's title set with {@link #setTitle(String)}. By default the
+   * title is empty.</p>
+   *
+   * <p>Current window title can be gotten with {@link Window#getTitle()}</p>
    *
    * @return Title set with {{@link #setTitle(String)}} or empty if none (<code>NULL</code>) set.
    * @see #setTitle(String)
+   * @see Window#getTitle()
+   * @since unreleased
    */
   public String getTitle() {
 
     return title == null ? "" : title;
-
-  }
-
-  /**
-   * <p>Set whetever the window will be resizable or not. </p>
-   *
-   * <p>Thi is set to <code>FALSE</code> by default but it's recommended to use resizable
-   * windows for best compatibility with different kinds of systems and hardware. Some systems
-   * might allow forcing fullscreen even if this is <code>TRUE</code>.</p>
-   *
-   * @param resizable <code>TRUE</code> if the window will be resizable, <code>FALSE</code> if not.
-   * @see #isResizable()
-   */
-  public void setResizable(boolean resizable) {
-
-    this.resizable = resizable;
-
-  }
-
-  /**
-   * <p>Whether the window will be resizable or not.</p>
-   *
-   * <p>This is set to <code>FALSE</code> by default.</p>
-   *
-   * @return <code>TRUE</code> if the window will be resizable, <code>FALSE</code> if not.
-   * @see #setResizable(boolean)
-   */
-  public boolean isResizable() {
-
-    return resizable;
 
   }
 

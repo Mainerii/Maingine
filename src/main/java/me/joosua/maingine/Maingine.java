@@ -40,9 +40,9 @@ public class Maingine {
       throw new IllegalStateException("Window couldn't be created");
     }
 
-    while(true) {
+    // LOOP TO PREVENT WINDOW FROM CLOSING
+    while (!window.isCloseRequested()) {
       window.update();
-      if (false) break;
     }
 
     window.destroy();

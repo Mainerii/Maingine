@@ -1,9 +1,11 @@
 package me.joosua.maingine.utils;
 
+import java.io.File;
+import java.io.PrintStream;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.io.IoBuilder;
 import org.lwjgl.system.Configuration;
-import java.io.File;
 
 /**
  * <p>Everything to do with Log4j logger.</p>
@@ -38,7 +40,8 @@ public class LoggerManager {
     System.setProperty("log4j2.debug", "" + debug);
     System.setProperty("maingine.logger.dir", getLogDir(folders));
 
-    Configuration.DEBUG_STREAM.set(IoBuilder.forLogger("LWJGL").setLevel(Level.DEBUG).buildPrintStream());
+    PrintStream stream = IoBuilder.forLogger("LWJGL").setLevel(Level.DEBUG).buildPrintStream();
+    Configuration.DEBUG_STREAM.set(stream);
 
     System.setErr(IoBuilder.forLogger("Maingine").setLevel(Level.ERROR).buildPrintStream());
     System.setOut(IoBuilder.forLogger("Maingine").setLevel(Level.DEBUG).buildPrintStream());
