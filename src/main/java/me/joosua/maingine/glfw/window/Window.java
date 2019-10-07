@@ -21,6 +21,8 @@ public class Window {
 
   private String title;
 
+  private boolean visible;
+
   /**
    * <p>Create a window.</p>
    *
@@ -42,6 +44,7 @@ public class Window {
     }
 
     title = settings.getTitle();
+    visible = settings.isVisible();
 
     GLFW.glfwDefaultWindowHints();
 
@@ -57,7 +60,7 @@ public class Window {
 
     }
 
-    if (true) {
+    if (visible) {
       GLFW.glfwShowWindow(windowID);
     }
 
@@ -166,6 +169,8 @@ public class Window {
 
       if (title == null) title = "";
 
+      this.title = title;
+
       GLFW.glfwSetWindowTitle(windowID, title);
 
       return true;
@@ -180,7 +185,8 @@ public class Window {
    * <p>Gets the window's current title.</p>
    *
    * <p>The result may be invalid if the title was not set the proper way with
-   * {@link #setTitle(String)} nor given on window creation.</p>
+   * {@link #setTitle(String)} nor given on window creation. The previous known value
+   * will be given if the window has been destroyed.</p>
    *
    * @return Title set with {{@link #setTitle(String)}} or <code>NULL</code> if none set.
    * @see #setTitle(String)
@@ -189,6 +195,55 @@ public class Window {
   public String getTitle() {
 
     return title;
+
+  }
+
+  /**
+   * <p>Sets whether the window is visible or not.</p>
+   *
+   * <p>Visibility is only set if {@link #isOpen()} returns <code>TRUE</code>.</p>
+   *
+   * <p>Note that this doesn't mean minimizing. Nothing from the window is visible.</p>
+   *
+   * @param visible <code>TRUE</code> to make the window visible, <code>FALSE</code> to not.
+   * @return Whether the visibility was set or not.
+   * @see #isVisible()
+   * @since unreleased
+   */
+  public boolean setVisibility(boolean visible) {
+
+    if (isOpen()) {
+
+      this.visible = visible;
+
+      if (visible) {
+        GLFW.glfwShowWindow(windowID);
+      } else {
+        GLFW.glfwHideWindow(windowID);
+      }
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  /**
+   * <p>Whether the window is visible or not.</p>
+   *
+   * <p>The result may be invalid if the visibility was not set the proper way with
+   * {@link #setVisibility(boolean)} nor given on window creation. <code>FALSE</code> will be given
+   * if the window has been destroyed or hasn't been created.</p>
+   *
+   * @return <code>TRUE</code> if the window is visible, <code>FALSE</code> if not.
+   * @see #setVisibility(boolean)
+   * @since unreleased
+   */
+  public boolean isVisible() {
+
+    return isOpen() && visible;
 
   }
 
