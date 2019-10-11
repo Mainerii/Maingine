@@ -3,6 +3,7 @@ package me.joosua.maingine;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
 import me.joosua.maingine.settings.WindowSettings;
+import me.joosua.maingine.utils.LoggerManager;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ public class MaingineTest {
 
   @Test public void testWindow() {
 
+    LoggerManager.prepareLogger(false, new String[] {"maingine", "tests"});
     Assert.assertEquals(true, GlfwManager.init());
 
     Window window = new Window(null);
