@@ -22,7 +22,7 @@ dependencies {
   // Internal only
   implementation 'com.google.guava:guava:27.0.1-jre'
 
-  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
 
   implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 

@@ -83,6 +83,8 @@ public class Window {
 
     GLFW.glfwSwapBuffers(windowID);
 
+
+
     GLFW.glfwPollEvents();
 
   }
