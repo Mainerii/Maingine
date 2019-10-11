@@ -16,7 +16,7 @@ import org.lwjgl.system.Configuration;
  *
  * <p>The methods here are mainly static and must be called from a specific thread.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class GlfwManager {
 
@@ -34,7 +34,7 @@ public class GlfwManager {
    *
    * @return <code>TRUE</code> is successful, or <code>FALSE</code> if not.
    * @see #terminate()
-   * @since unreleased
+   * @since 0.0.2
    */
   public static boolean init() {
 
@@ -68,7 +68,7 @@ public class GlfwManager {
    * successfully initialized with {@link #init()}.</p>
    *
    * @see #init()
-   * @since unreleased
+   * @since 0.0.2
    */
   public static void terminate() {
 

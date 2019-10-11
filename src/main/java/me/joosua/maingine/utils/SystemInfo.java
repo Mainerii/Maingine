@@ -8,7 +8,7 @@ import org.lwjgl.Version;
 /**
  * <p>SystemInfo provides information about the system in simplified form.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class SystemInfo {
 
@@ -17,7 +17,7 @@ public class SystemInfo {
   /**
    * <p>Print information about Maingine and about the operating system used.</p>
    *
-   * @since 0.0.1
+   * @since 0.0.2
    */
   public static void printInfo() {
 

@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
  * <p>This also functions as a wrapper for GLFW and no GLFW's window command
  * should be used outside of this class for proper functionality.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class Window {
 
@@ -31,7 +31,7 @@ public class Window {
    * will cause problems if you don't what you are doing.</p>
    *
    * @param settings Initial values for window.
-   * @since unreleased
+   * @since 0.0.2
    */
   public Window(final WindowSettings settings) {
 
@@ -77,13 +77,11 @@ public class Window {
    *
    * <p>Not calling this constantly will cause the window to freeze and other unwanted behavior.</p>
    *
-   * @since unreleased
+   * @since 0.0.2
    */
   public void update() {
 
     GLFW.glfwSwapBuffers(windowID);
-
-
 
     GLFW.glfwPollEvents();
 
@@ -96,7 +94,7 @@ public class Window {
    * <p>Window is only closed if {@link #isOpen()} returns <code>TRUE</code>.</p>
    *
    * @return <code>TRUE</code> if the window was closed, <code>FALSE</code> if not.
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean destroy() {
 
@@ -126,7 +124,7 @@ public class Window {
    * <p><code>TRUE</code> is also returned if {@link #isOpen()} returns <code>FALSE</code>.</p>
    *
    * @return <code>TRUE</code> if the window should close, <code>FALSE</code> if not.
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isCloseRequested() {
 
@@ -145,7 +143,7 @@ public class Window {
    * or had some other unexpected closure like one made without {@link #destroy()}.</p>
    *
    * @return <code>TRUE</code> if the window is open, <code>FALSE</code> if not.
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isOpen() {
 
@@ -164,7 +162,7 @@ public class Window {
    * @param title The title to be used.
    * @return Whether the title was changed or not.
    * @see #getTitle()
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean setTitle(String title) {
 
@@ -193,7 +191,7 @@ public class Window {
    *
    * @return Title set with {{@link #setTitle(String)}} or <code>NULL</code> if none set.
    * @see #setTitle(String)
-   * @since unreleased
+   * @since 0.0.2
    */
   public String getTitle() {
 
@@ -211,7 +209,7 @@ public class Window {
    * @param visible <code>TRUE</code> to make the window visible, <code>FALSE</code> to not.
    * @return Whether the visibility was set or not.
    * @see #isVisible()
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean setVisibility(boolean visible) {
 
@@ -242,7 +240,7 @@ public class Window {
    *
    * @return <code>TRUE</code> if the window is visible, <code>FALSE</code> if not.
    * @see #setVisibility(boolean)
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isVisible() {
 
@@ -259,7 +257,7 @@ public class Window {
    * if {@link #isOpen()} returns <code>FALSE</code>.</p>
    *
    * @return <code>TRUE</code> if the window is resizable, <code>FALSE</code> if not.
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isResizable() {
 
@@ -277,7 +275,7 @@ public class Window {
    *
    * @return The window's ID
    * @see #isOpen()
-   * @since unreleased
+   * @since 0.0.2
    */
   public long getWindowID() {
 

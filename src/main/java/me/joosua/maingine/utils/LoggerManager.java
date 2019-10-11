@@ -10,7 +10,7 @@ import org.lwjgl.system.Configuration;
 /**
  * <p>Everything to do with Log4j logger.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class LoggerManager {
 
@@ -18,7 +18,7 @@ public class LoggerManager {
    * <p>Sets default system properties and streams needed for logger.</p>
    *
    * @see #prepareLogger(boolean, String[])
-   * @since unreleased
+   * @since 0.0.2
    */
   public static void prepareLogger() {
 
@@ -33,7 +33,7 @@ public class LoggerManager {
    *
    * @param folders Folders for {@link #getLogDir(String[])}
    * @see #prepareLogger()
-   * @since unreleased
+   * @since 0.0.2
    */
   public static void prepareLogger(boolean debug, String[] folders) {
 
@@ -55,7 +55,7 @@ public class LoggerManager {
    *
    * @param folders Array with each folder for log dir
    * @return Absolute path to log dir
-   * @since unreleased
+   * @since 0.0.2
    */
   public static String getLogDir(String[] folders) {
 

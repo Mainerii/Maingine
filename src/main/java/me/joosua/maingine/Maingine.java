@@ -10,11 +10,11 @@ import me.joosua.maingine.utils.SystemInfo;
  * <p>Main class of Maingine. This class bootstraps the other parts of the engine.
  * Some of the intialization is done here.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class Maingine {
 
-  public static final String VERSION = "0.0.1";
+  public static final String VERSION = "0.0.2";
 
   public static boolean DEBUG = false;
 
@@ -22,7 +22,7 @@ public class Maingine {
    * <p>Main constructor of Maingine. The first part of
    * initialization is done here.</p>
    *
-   * @since unreleased
+   * @since 0.0.2
    */
   public Maingine(WindowSettings windowSettings) {
 

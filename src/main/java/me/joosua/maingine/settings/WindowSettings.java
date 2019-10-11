@@ -8,7 +8,7 @@ import me.joosua.maingine.glfw.window.Window;
  * <p>Nothing here affects any window immediately but the values can be passed
  * for {@link me.joosua.maingine.glfw.window.Window Window} when creating one.</p>
  *
- * @since unreleased
+ * @since 0.0.2
  */
 public class WindowSettings {
 
@@ -34,7 +34,7 @@ public class WindowSettings {
    * @param title The title to be used.
    * @see #getTitle()
    * @see Window#setTitle(String)
-   * @since unreleased
+   * @since 0.0.2
    */
   public void setTitle(String title) {
 
@@ -51,7 +51,7 @@ public class WindowSettings {
    * @return Title set with {{@link #setTitle(String)}} or empty if none (<code>NULL</code>) set.
    * @see #setTitle(String)
    * @see Window#getTitle()
-   * @since unreleased
+   * @since 0.0.2
    */
   public String getTitle() {
 
@@ -70,7 +70,7 @@ public class WindowSettings {
    * @param visible <code>TRUE</code> to make the window visible, <code>FALSE</code> to not.
    * @see #isVisible() 
    * @see Window#setVisibility(boolean)
-   * @since unreleased
+   * @since 0.0.2
    */
   public void setVisibility(boolean visible) {
 
@@ -87,7 +87,7 @@ public class WindowSettings {
    * @return Value set with {@link #setVisibility(boolean)} or <code>FALSE</code> by default.
    * @see #setVisibility(boolean)
    * @see Window#isVisible()
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isVisible() {
 
@@ -102,7 +102,7 @@ public class WindowSettings {
    *
    * @param resizable <code>TRUE</code> to make the window resizable, <code>FALSE</code> to not.
    * @see #isResizable()
-   * @since unreleased
+   * @since 0.0.2
    */
   public void setResizable(boolean resizable) {
 
@@ -118,7 +118,7 @@ public class WindowSettings {
    *
    * @return Value set with {@link #setResizable(boolean)} or <code>FALSE</code> by default.
    * @see #setResizable(boolean)
-   * @since unreleased
+   * @since 0.0.2
    */
   public boolean isResizable() {
 
