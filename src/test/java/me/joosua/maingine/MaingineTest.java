@@ -22,6 +22,7 @@ public class MaingineTest {
     Assert.assertEquals(false, window.setTitle(""));
     Assert.assertEquals(false, window.setVisibility(true));
     Assert.assertEquals(false, window.isVisible());
+    Assert.assertEquals(false, window.isResizable());
     Assert.assertEquals(false, window.destroy());
     Assert.assertEquals(0, window.getWindowID(), 0);
 
@@ -35,6 +36,9 @@ public class MaingineTest {
     Assert.assertEquals(false, settings.isVisible());
     settings.setVisibility(true);
     Assert.assertEquals(true, settings.isVisible());
+    Assert.assertEquals(false, settings.isResizable());
+    settings.setResizable(true);
+    Assert.assertEquals(true, settings.isResizable());
 
     window = new Window(settings);
 
@@ -47,10 +51,12 @@ public class MaingineTest {
     Assert.assertEquals(true, window.isVisible());
     Assert.assertEquals(true, window.setVisibility(false));
     Assert.assertEquals(false, window.isVisible());
+    Assert.assertEquals(true, window.isResizable());
     Assert.assertEquals(true, window.destroy());
     Assert.assertEquals(false, window.setTitle(""));
     Assert.assertEquals(false, window.setVisibility(true));
     Assert.assertEquals(false, window.isVisible());
+    Assert.assertEquals(false, window.isResizable());
     Assert.assertEquals(false, window.destroy());
     Assert.assertEquals(0, window.getWindowID());
 

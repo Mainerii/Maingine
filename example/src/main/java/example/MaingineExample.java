@@ -11,6 +11,7 @@ public class MaingineExample {
 
     WindowSettings windowSettings = new WindowSettings();
     windowSettings.setTitle("Maingine example");
+    windowSettings.setResizable(true);
     windowSettings.setVisibility(true);
 
 		new Maingine(windowSettings);

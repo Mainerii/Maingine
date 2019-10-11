@@ -13,8 +13,8 @@ import me.joosua.maingine.glfw.window.Window;
 public class WindowSettings {
 
   private String title;
-
   private boolean visible;
+  private boolean resizable;
 
   // What it does and what it defaults to.
 
@@ -84,7 +84,7 @@ public class WindowSettings {
    *
    * <p>Current window title can be gotten with {@link Window#isVisible()}</p>
    *
-   * @return Value set with {{@link #setVisibility(boolean)}} or (<code>FALSE</code>) by default.
+   * @return Value set with {@link #setVisibility(boolean)} or <code>FALSE</code> by default.
    * @see #setVisibility(boolean)
    * @see Window#isVisible()
    * @since unreleased
@@ -92,6 +92,37 @@ public class WindowSettings {
   public boolean isVisible() {
 
     return visible;
+
+  }
+
+  /**
+   * <p>Whether the window is resizable or not. By default the window is not resizable.</p>
+   *
+   * <p>Resizability can't be changed after window creation.</p>
+   *
+   * @param resizable <code>TRUE</code> to make the window resizable, <code>FALSE</code> to not.
+   * @see #isResizable()
+   * @since unreleased
+   */
+  public void setResizable(boolean resizable) {
+
+    this.resizable = resizable;
+
+  }
+
+  /**
+   * <p>Gets the window's resizability set with {@link #setResizable(boolean)}.
+   * By default the window is not resizable.</p>
+   *
+   * <p>Current window resizability can be gotten with {@link Window#isResizable()}.</p>
+   *
+   * @return Value set with {@link #setResizable(boolean)} or <code>FALSE</code> by default.
+   * @see #setResizable(boolean)
+   * @since unreleased
+   */
+  public boolean isResizable() {
+
+    return resizable;
 
   }
 

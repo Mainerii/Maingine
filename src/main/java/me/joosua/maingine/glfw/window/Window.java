@@ -20,8 +20,8 @@ public class Window {
   private long windowID;
 
   private String title;
-
   private boolean visible;
+  private boolean resizable;
 
   /**
    * <p>Create a window.</p>
@@ -45,11 +45,12 @@ public class Window {
 
     title = settings.getTitle();
     visible = settings.isVisible();
+    resizable = settings.isResizable();
 
     GLFW.glfwDefaultWindowHints();
 
     GLFW.glfwWindowHint(GLFW.GLFW_VISIBLE, 0);
-    GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, true ? 1 : 0);
+    GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, resizable ? 1 : 0);
 
     windowID = GLFW.glfwCreateWindow(300, 300, title, 0, 0);
 
@@ -248,11 +249,29 @@ public class Window {
   }
 
   /**
+   * <p>Whether the window is resizable or not.</p>
+   *
+   * <p>Resizability can't be changed.</p>
+   *
+   * <p>This is always either the value passed on window creation or <code>FALSE</code>
+   * if {@link #isOpen()} returns <code>FALSE</code>.</p>
+   *
+   * @return <code>TRUE</code> if the window is resizable, <code>FALSE</code> if not.
+   * @since unreleased
+   */
+  public boolean isResizable() {
+
+    return isOpen() && resizable;
+
+  }
+
+  /**
    * <p>Gets the window's ID. The ID can be used to execute GLFW functions but only
    * do so if you are familiar with Maingine and know what you're doing as it may
    * cause bugs.</p>
    *
-   * <p>The ID will be <code>0</code> if the window isn't open.</p>
+   * <p>The ID will be <code>0</code> if the window isn't open and invalid
+   * if the window wasn't managed properly.</p>
    *
    * @return The window's ID
    * @see #isOpen()
