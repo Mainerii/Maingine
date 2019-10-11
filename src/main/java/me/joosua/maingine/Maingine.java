@@ -1,5 +1,6 @@
 package me.joosua.maingine;
 
+import me.joosua.maingine.engine.Engine;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
 import me.joosua.maingine.settings.WindowSettings;
@@ -40,10 +41,7 @@ public class Maingine {
       throw new IllegalStateException("Window couldn't be created");
     }
 
-    // LOOP TO PREVENT WINDOW FROM CLOSING
-    while (!window.isCloseRequested()) {
-      window.update();
-    }
+    new Engine(window).run();
 
     window.destroy();
 

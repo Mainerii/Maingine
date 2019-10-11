@@ -70,20 +70,32 @@ public class Window {
   }
 
   /**
-   * <p>Update the window.</p>
+   * <p>Poll the events.</p>
    *
-   * <p>Currently this means swapping of buffers and polling the events. Both of these
-   * are required for basic window functionality.</p>
+   * <p>This is required for basic window functionality. User input will be read here.</p>
    *
-   * <p>Not calling this constantly will cause the window to freeze and other unwanted behavior.</p>
+   * <p>Not calling this constantly might cause the
+   * window to freeze and other unwanted behavior.</p>
    *
-   * @since 0.0.2
+   * @since unreleased
    */
-  public void update() {
-
-    GLFW.glfwSwapBuffers(windowID);
+  public void pollEvents() {
 
     GLFW.glfwPollEvents();
+
+  }
+
+  /**
+   * <p>Render to screen.</p>
+   *
+   * <p>Buffers will be swapped here. The previously drawn one will be shown and new
+   * one prepared for drawing.</p>
+   *
+   * @since unreleased
+   */
+  public void render() {
+
+    GLFW.glfwSwapBuffers(windowID);
 
   }
 
