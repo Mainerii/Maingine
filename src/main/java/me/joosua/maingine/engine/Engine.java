@@ -3,6 +3,7 @@ package me.joosua.maingine.engine;
 import me.joosua.maingine.glfw.window.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
 /**
  * <p>The engine of Maingine.</p>
@@ -21,6 +22,8 @@ public class Engine {
   private Window window;
 
   private boolean closeRequested;
+
+  private int fps = 0;
 
   /**
    * <p>Initialize the engine.</p>
@@ -54,14 +57,48 @@ public class Engine {
 
     logger.info("Starting the engine");
 
+    int targetFps = 60;
+    double targetTime = 1.0 / targetFps;
+
+    int loops = 0;
+    double fpsTimer = 0;
+
+    double lastLoopTime = GLFW.glfwGetTime() - targetTime;
+
     while (true) {
 
+      double currentTime = GLFW.glfwGetTime();
+      double lastLoopLength = currentTime - lastLoopTime;
+      lastLoopTime = GLFW.glfwGetTime();
+
+      fpsTimer += lastLoopLength;
+      loops++;
+
+      if (fpsTimer >= 1) {
+        fps = loops;
+        loops = 0;
+        fpsTimer = 0;
+        System.out.println("FPS: " + fps + " Delta: " + lastLoopLength);
+      }
+
       processInput();
-      update();
+      update(lastLoopLength);
 
       if (closeRequested) break;
 
       render();
+
+      try {
+
+        double sleep = (lastLoopTime - GLFW.glfwGetTime() + targetTime) / 1000;
+
+        if (sleep > 0) {
+          Thread.sleep((long) sleep);
+        }
+
+      } catch (InterruptedException e) {
+        logger.error("Engine sleep error: " + e.getMessage());
+      }
 
     }
 
@@ -72,7 +109,7 @@ public class Engine {
   /**
    * <p>Poll the user input.</p>
    *
-   * <p>This should be called before {@link #update()}.</p>
+   * <p>This should be called before {@link #update(double)}.</p>
    *
    * @since unreleased
    */
@@ -91,16 +128,17 @@ public class Engine {
    *
    * <p>This should be called after {@link #processInput()}.</p>
    *
+   * @param delta Time each update takes (Multiply time-related values with this).
    * @since unreleased
    */
-  private void update() {
+  private void update(double delta) {
 
   }
 
   /**
    * <p>Render to screen.</p>
    *
-   * <p>This should be called after {@link #update()}.</p>
+   * <p>This should be called after {@link #update(double)}.</p>
    *
    * @since unreleased
    */
@@ -160,6 +198,21 @@ public class Engine {
   public boolean isCloseRequested() {
 
     return closeRequested;
+
+  }
+
+  /**
+   * <p>Get current FPS.</p>
+   *
+   * <p>This value is updated once every second so it can only be used
+   * for statistics.</p>
+   *
+   * @return Current rate of frames per second.
+   * @since unreleased
+   */
+  public int getFps() {
+
+    return fps;
 
   }
 
