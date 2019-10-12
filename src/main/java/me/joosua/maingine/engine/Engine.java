@@ -20,6 +20,8 @@ public class Engine {
 
   private Window window;
 
+  private boolean closeRequested;
+
   /**
    * <p>Initialize the engine.</p>
    *
@@ -52,10 +54,13 @@ public class Engine {
 
     logger.info("Starting the engine");
 
-    while(!window.isCloseRequested()) {
+    while (true) {
 
       processInput();
       update();
+
+      if (closeRequested) break;
+
       render();
 
     }
@@ -74,6 +79,10 @@ public class Engine {
   private void processInput() {
 
     window.pollEvents();
+
+    if (window.isCloseRequested()) {
+      closeRequested = true;
+    }
 
   }
 
@@ -98,6 +107,59 @@ public class Engine {
   private void render() {
 
     window.render();
+
+  }
+
+  /**
+   * <p>Request to stop the engine.</p>
+   *
+   * <p>This is similar to clicking window close request button (X on MS Windows).</p>
+   *
+   * <p>This can still be cancelled with {@link #refuseCloseRequest()} and the current
+   * close request state can be gotten with {@link #isCloseRequested()}.</p>
+   *
+   * @see #refuseCloseRequest()
+   * @see #isCloseRequested()
+   * @since unreleased
+   */
+  public void stop() {
+
+    closeRequested = true;
+
+  }
+
+  /**
+   * <p>Cancel stopping the engine.</p>
+   *
+   * <p>This needs to be called if {@link #isCloseRequested()} returns <code>TRUE</code>
+   * and the engine shouldn't be stopped.</p>
+   *
+   * @see #stop
+   * @see #isCloseRequested()
+   * @since unreleased
+   */
+  public void refuseCloseRequest() {
+
+    closeRequested = false;
+
+  }
+
+  /**
+   * <p>Checks if the engine is close requested.</p>
+   *
+   * <p>Close request could have come from {@link Window#isCloseRequested()} or
+   * {@link #stop()}.</p>
+   *
+   * <p>The request can be cancelled with {@link #refuseCloseRequest()}.</p>
+   *
+   * @return <code>TRUE</code> if the engine close is requested, <code>FALSE</code> if not.
+   * @see #stop()
+   * @see #isCloseRequested()
+   * @since unreleased
+   */
+  public boolean isCloseRequested() {
+
+    return closeRequested;
 
   }
 

@@ -19,6 +19,8 @@ public class Maingine {
 
   public static boolean DEBUG = false;
 
+  private Engine engine;
+
   /**
    * <p>Main constructor of Maingine. The first part of
    * initialization is done here.</p>
@@ -41,11 +43,27 @@ public class Maingine {
       throw new IllegalStateException("Window couldn't be created");
     }
 
-    new Engine(window).run();
+    engine = new Engine(window);
+    engine.run();
 
     window.destroy();
 
     GlfwManager.terminate();
+
+  }
+
+  /**
+   * <p>Gets Maingine's current engine instance.</p>
+   *
+   * <p>The returned value will only be valid after
+   * initialization with {@link #Maingine(WindowSettings)}.</p>
+   *
+   * @return Get Maingine's current engine instance or <code>NULL</code> if none.
+   * @since unreleased
+   */
+  public Engine getEngine() {
+
+    return engine;
 
   }
 
