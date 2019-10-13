@@ -1,6 +1,7 @@
 package me.joosua.maingine.engine;
 
 import me.joosua.maingine.glfw.window.Window;
+import me.joosua.maingine.settings.EngineSettings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -41,14 +42,14 @@ public class Engine {
    * @see #run
    * @since unreleased
    */
-  public Engine(Window window) {
+  public Engine(EngineSettings settings, Window window) {
 
     logger.info("Beginning engine initialization");
 
     this.window = window;
 
-    setTargetFps(60);
-    setTargetUps(60);
+    setTargetFps(settings.getTargetFps());
+    setTargetUps(settings.getTargetUps());
 
     logger.info("The engine has been initialized");
 
@@ -231,7 +232,8 @@ public class Engine {
    * it on too slow systems.</p>
    *
    * @param fps Targeted frames per second
-   * @see #getFps() 
+   * @see #getFps()
+   * @see #getTargetFps()
    * @since unreleased
    */
   public void setTargetFps(double fps) {
@@ -251,8 +253,6 @@ public class Engine {
    *
    * <p>This is the FPS engine tries to reach and keep. The actual FPS can be slightly over
    * the targeted one and much lower than it on too slow systems.</p>
-   *
-   * <p>Target FPS of <code>0</code> or lower removes the FPS limitation.</p>
    *
    * @return Targeted frames per second
    * @see #setTargetFps(double)
@@ -288,6 +288,7 @@ public class Engine {
    *
    * @param ups Targeted updates per second
    * @see #getUps()
+   * @see #getTargetFps()
    * @since unreleased
    */
   public void setTargetUps(double ups) {

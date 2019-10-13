@@ -3,6 +3,7 @@ package me.joosua.maingine;
 import me.joosua.maingine.engine.Engine;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
+import me.joosua.maingine.settings.EngineSettings;
 import me.joosua.maingine.settings.WindowSettings;
 import me.joosua.maingine.utils.LoggerManager;
 import me.joosua.maingine.utils.SystemInfo;
@@ -27,7 +28,7 @@ public class Maingine {
    *
    * @since 0.0.2
    */
-  public Maingine(WindowSettings windowSettings) {
+  public Maingine(EngineSettings engineSettings, WindowSettings windowSettings) {
 
     LoggerManager.prepareLogger();
 
@@ -43,7 +44,7 @@ public class Maingine {
       throw new IllegalStateException("Window couldn't be created");
     }
 
-    engine = new Engine(window);
+    engine = new Engine(engineSettings, window);
     engine.run();
 
     window.destroy();
@@ -56,7 +57,7 @@ public class Maingine {
    * <p>Gets Maingine's current engine instance.</p>
    *
    * <p>The returned value will only be valid after
-   * initialization with {@link #Maingine(WindowSettings)}.</p>
+   * initialization with {@link #Maingine(EngineSettings, WindowSettings)}.</p>
    *
    * @return Get Maingine's current engine instance or <code>NULL</code> if none.
    * @since unreleased

@@ -16,12 +16,6 @@ public class WindowSettings {
   private boolean visible;
   private boolean resizable;
 
-  // What it does and what it defaults to.
-
-  // can it be changed
-
-  // Exceptions
-
   /**
    * <p>Sets the window's title. By default the title is empty.</p>
    *
