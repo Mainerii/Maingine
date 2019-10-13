@@ -54,6 +54,9 @@ public class Window {
 
     windowID = GLFW.glfwCreateWindow(300, 300, title, 0, 0);
 
+    GLFW.glfwMakeContextCurrent(windowID);
+    GLFW.glfwSwapInterval(0);
+
     if (windowID == 0) {
 
       logger.error("Window couldn't be created!");

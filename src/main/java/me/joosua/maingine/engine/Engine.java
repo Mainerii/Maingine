@@ -24,6 +24,12 @@ public class Engine {
   private boolean closeRequested;
 
   private int fps = 0;
+  private double targetFps = 0;
+  private double targetFpsTime = 0;
+
+  private int ups = 0;
+  private double targetUps = 0;
+  private double targetUpsTime = 0;
 
   /**
    * <p>Initialize the engine.</p>
@@ -41,6 +47,9 @@ public class Engine {
 
     this.window = window;
 
+    setTargetFps(60);
+    setTargetUps(60);
+
     logger.info("The engine has been initialized");
 
   }
@@ -57,47 +66,61 @@ public class Engine {
 
     logger.info("Starting the engine");
 
-    int targetFps = 60;
-    double targetTime = 1.0 / targetFps;
+    double refreshTimer = 0;
 
-    int loops = 0;
-    double fpsTimer = 0;
+    double deltaUps = 0;
+    double deltaFps = 0;
+    int frames = 0;
+    int ticks = 0;
 
-    double lastLoopTime = GLFW.glfwGetTime() - targetTime;
+    double initialTime = GLFW.glfwGetTime();
 
+    gameloop:
     while (true) {
 
       double currentTime = GLFW.glfwGetTime();
-      double lastLoopLength = currentTime - lastLoopTime;
-      lastLoopTime = GLFW.glfwGetTime();
+      double lastLoopTime = currentTime - initialTime;
 
-      fpsTimer += lastLoopLength;
-      loops++;
+      refreshTimer += lastLoopTime;
 
-      if (fpsTimer >= 1) {
-        fps = loops;
-        loops = 0;
-        fpsTimer = 0;
-        System.out.println("FPS: " + fps + " Delta: " + lastLoopLength);
+      deltaUps += lastLoopTime / targetUpsTime;
+      deltaFps += lastLoopTime / targetFpsTime;
+
+      initialTime = currentTime;
+
+      if (targetUpsTime > 0 && deltaUps >= 1) {
+
+        processInput();
+        update(deltaUps * targetUpsTime);
+
+        if (closeRequested) break gameloop;
+
+        ticks++;
+        deltaUps = 0;
+
       }
 
-      processInput();
-      update(lastLoopLength);
+      if (targetFpsTime > 0 && deltaFps >= 1) {
 
-      if (closeRequested) break;
+        render();
 
-      render();
+        frames++;
+        deltaFps--;
 
-      try {
+      }
 
-        double sleep = (lastLoopTime - GLFW.glfwGetTime() + targetTime) / 1000;
+      if (refreshTimer >= 1) {
 
-        if (sleep > 0) {
-          Thread.sleep((long) sleep);
-        }
+        refreshTimer = 0;
 
-      } catch (InterruptedException e) {
-        logger.error("Engine sleep error: " + e.getMessage());
+        fps = frames;
+        ups = ticks;
+
+        frames = 0;
+        ticks = 0;
+
+        System.out.println(String.format("UPS: %s, FPS: %s", ups, fps));
+
       }
 
     }
@@ -202,17 +225,114 @@ public class Engine {
   }
 
   /**
+   * <p>Set the target FPS.</p>
+   *
+   * <p>The actual FPS can be slightly over the targeted one and much lower than
+   * it on too slow systems.</p>
+   *
+   * @param fps Targeted frames per second
+   * @see #getFps() 
+   * @since unreleased
+   */
+  public void setTargetFps(double fps) {
+
+    this.targetFps = fps;
+
+    if (fps > 0) {
+      targetFpsTime = 1 / fps;
+    } else {
+      targetFpsTime = 0;
+    }
+
+  }
+
+  /**
+   * <p>Get the target FPS.</p>
+   *
+   * <p>This is the FPS engine tries to reach and keep. The actual FPS can be slightly over
+   * the targeted one and much lower than it on too slow systems.</p>
+   *
+   * <p>Target FPS of <code>0</code> or lower removes the FPS limitation.</p>
+   *
+   * @return Targeted frames per second
+   * @see #setTargetFps(double)
+   * @since unreleased
+   */
+  public double getTargetFps() {
+
+    return targetFps;
+
+  }
+
+  /**
    * <p>Get current FPS.</p>
    *
    * <p>This value is updated once every second so it can only be used
    * for statistics.</p>
    *
    * @return Current rate of frames per second.
+   * @see #setTargetFps(double)
    * @since unreleased
    */
   public int getFps() {
 
     return fps;
+
+  }
+
+  /**
+   * <p>Set the target UPS.</p>
+   *
+   * <p>The actual UPS can be slightly over the targeted one and much lower than
+   * it on too slow systems.</p>
+   *
+   * @param ups Targeted updates per second
+   * @see #getUps()
+   * @since unreleased
+   */
+  public void setTargetUps(double ups) {
+
+    this.targetUps = ups;
+
+    if (ups > 0) {
+      targetUpsTime = 1 / ups;
+    } else {
+      targetUpsTime = 0;
+    }
+
+  }
+
+  /**
+   * <p>Get the target UPS.</p>
+   *
+   * <p>This is the UPS engine tries to reach and keep. The actual UPS can be slightly over
+   * the targeted one and much lower than it on too slow systems.</p>
+   *
+   * <p>Target UPS of <code>0</code> or lower removes the UPS limitation.</p>
+   *
+   * @return Targeted updates per second
+   * @see #setTargetUps(double)
+   * @since unreleased
+   */
+  public double getTargetUps() {
+
+    return targetUps;
+
+  }
+
+  /**
+   * <p>Get current UPS.</p>
+   *
+   * <p>This value is updated once every second so it can only be used
+   * for statistics.</p>
+   *
+   * @return Current rate of updates per second.
+   * @see #setTargetUps(double)
+   * @since unreleased
+   */
+  public int getUps() {
+
+    return ups;
 
   }
 
