@@ -47,3 +47,9 @@ checkstyle {
   toolVersion '8.24'
 
 }
+
+test {
+
+  useJUnitPlatform()
+
+}

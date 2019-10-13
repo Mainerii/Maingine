@@ -106,7 +106,7 @@ public class Maingine {
   }
 
   /**
-   * <p>Gentlemen, start your engines!</p>
+   * <p>Gentlemen, start your engines.</p>
    *
    * <p>This is where the engine will take control of the thread
    * and first game state will be called shortly.</p>

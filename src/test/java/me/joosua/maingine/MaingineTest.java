@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import me.joosua.maingine.engine.Engine;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
+import me.joosua.maingine.settings.EngineSettings;
 import me.joosua.maingine.settings.WindowSettings;
 import me.joosua.maingine.utils.LoggerManager;
 import org.apache.logging.log4j.LogManager;
@@ -92,6 +94,57 @@ public class MaingineTest {
     assertFalse(window.isResizable());
     assertFalse(window.destroy());
     assertEquals(0, window.getWindowID());
+
+  }
+
+  @Test
+  @Order(4)
+  public void testMaingine() {
+
+    Maingine maingine = new Maingine();
+
+    final EngineSettings engineSettings = new EngineSettings();
+    final WindowSettings windowSettings = new WindowSettings();
+
+    assertNull(maingine.getWindow());
+    assertNull(maingine.getEngine());
+
+    maingine.setSettings(null, null);
+    maingine.init();
+
+    assertNull(maingine.getWindow());
+    assertNull(maingine.getEngine());
+
+    maingine.setSettings(engineSettings, windowSettings);
+    maingine.init();
+
+    assertNotNull(maingine.getWindow());
+    assertNotNull(maingine.getEngine());
+
+  }
+
+  @Test
+  @Order(5)
+  public void testEngine() {
+
+    Window window = new Window(new WindowSettings());
+
+    EngineSettings engineSettings = new EngineSettings();
+    engineSettings.setTargetFps(0);
+    engineSettings.setTargetUps(20);
+
+    Engine engine = new Engine(engineSettings, window);
+
+    assertEquals(0, engine.getTargetFps());
+    assertEquals(20, engine.getTargetUps());
+    assertEquals(0, engine.getFps());
+    assertEquals(0, engine.getUps());
+
+    engine.setTargetFps(10);
+    engine.setTargetUps(30);
+
+    assertEquals(10, engine.getTargetFps());
+    assertEquals(30, engine.getTargetUps());
 
   }
 
