@@ -1,5 +1,7 @@
 package me.joosua.maingine.engine;
 
+import me.joosua.maingine.engine.gamestate.GameState;
+import me.joosua.maingine.engine.gamestate.GameStateManager;
 import me.joosua.maingine.glfw.window.Window;
 import me.joosua.maingine.settings.EngineSettings;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +24,8 @@ public class Engine {
 
   private Window window;
 
+  private GameStateManager gameStateManager;
+
   private boolean closeRequested;
 
   private int fps = 0;
@@ -42,10 +46,11 @@ public class Engine {
    * @see #run
    * @since 0.0.3
    */
-  public Engine(EngineSettings settings, Window window) {
+  public Engine(EngineSettings settings, GameStateManager gameStateManager, Window window) {
 
     logger.info("Beginning engine initialization");
 
+    this.gameStateManager = gameStateManager;
     this.window = window;
 
     setTargetFps(settings.getTargetFps());
@@ -120,8 +125,6 @@ public class Engine {
         frames = 0;
         ticks = 0;
 
-        System.out.println(String.format("UPS: %s, FPS: %s", ups, fps));
-
       }
 
     }
@@ -157,6 +160,8 @@ public class Engine {
    */
   private void update(double delta) {
 
+    gameStateManager.update(delta);
+
   }
 
   /**
@@ -167,6 +172,8 @@ public class Engine {
    * @since 0.0.3
    */
   private void render() {
+
+    gameStateManager.render();
 
     window.render();
 

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import me.joosua.maingine.engine.Engine;
+import me.joosua.maingine.engine.gamestate.GameStateManager;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
 import me.joosua.maingine.settings.EngineSettings;
@@ -133,7 +134,7 @@ public class MaingineTest {
     engineSettings.setTargetFps(0);
     engineSettings.setTargetUps(20);
 
-    Engine engine = new Engine(engineSettings, window);
+    Engine engine = new Engine(engineSettings, new GameStateManager(), window);
 
     assertEquals(0, engine.getTargetFps());
     assertEquals(20, engine.getTargetUps());

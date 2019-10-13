@@ -1,6 +1,8 @@
 package example;
 
+import example.game.Game;
 import me.joosua.maingine.Maingine;
+import me.joosua.maingine.engine.gamestate.GameStateManager;
 import me.joosua.maingine.settings.EngineSettings;
 import me.joosua.maingine.settings.WindowSettings;
 
@@ -23,6 +25,11 @@ public class MaingineExample {
     maingine.setSettings(engineSettings, windowSettings);
 
     maingine.init();
+
+    GameStateManager gameStateManager = maingine.getGameStateManager();
+    gameStateManager.addGameState("Game", new Game(maingine.getEngine()));
+    maingine.setMainStateName("Game");
+
     maingine.run();
 
 	}

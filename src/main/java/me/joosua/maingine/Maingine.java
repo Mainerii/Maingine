@@ -1,6 +1,7 @@
 package me.joosua.maingine;
 
 import me.joosua.maingine.engine.Engine;
+import me.joosua.maingine.engine.gamestate.GameStateManager;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
 import me.joosua.maingine.settings.EngineSettings;
@@ -23,6 +24,9 @@ public class Maingine {
 
   private static Logger logger;
 
+  private GameStateManager gameStateManager;
+  private String mainStateName;
+
   private Engine engine;
   private Window window;
 
@@ -40,6 +44,8 @@ public class Maingine {
     LoggerManager.prepareLogger();
 
     logger = LogManager.getLogger(Maingine.class);
+
+    gameStateManager = new GameStateManager();
 
     SystemInfo.printInfo();
 
@@ -97,7 +103,7 @@ public class Maingine {
         throw new IllegalStateException("Window couldn't be created");
       }
 
-      engine = new Engine(engineSettings, window);
+      engine = new Engine(engineSettings, gameStateManager, window);
 
       logger.info("Maingine has been initialized");
 
@@ -121,6 +127,8 @@ public class Maingine {
   public void run() {
 
     if (engine != null) {
+
+      gameStateManager.selectGameState(mainStateName);
 
       engine.run();
 
@@ -160,9 +168,39 @@ public class Maingine {
    */
   private void cleanup() {
 
+    gameStateManager.selectGameState(null);
+
     window.destroy();
 
     GlfwManager.terminate();
+
+  }
+
+  /**
+   * <p>Select which GameState to use when the engine is started.</p>
+   *
+   * <p>Its init is called will be called on {@link #run()}.</p>
+   *
+   * @param name Name of the first game state to be used
+   * @since unreleased
+   */
+  public void setMainStateName(String name) {
+
+    mainStateName = name;
+
+  }
+
+  /**
+   * <p>Get the current GameStateManager instance.</p>
+   *
+   * <p>GameStateManager is used to control game states.</p>
+   *
+   * @return The current GameStateManager instance
+   * @since unreleased
+   */
+  public GameStateManager getGameStateManager() {
+
+    return gameStateManager;
 
   }
 
