@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import me.joosua.maingine.engine.Engine;
+import me.joosua.maingine.engine.gamestate.GameState;
 import me.joosua.maingine.engine.gamestate.GameStateManager;
 import me.joosua.maingine.glfw.GlfwManager;
 import me.joosua.maingine.glfw.window.Window;
@@ -146,6 +147,92 @@ public class MaingineTest {
 
     assertEquals(10, engine.getTargetFps());
     assertEquals(30, engine.getTargetUps());
+
+  }
+
+  @Test
+  @Order(6)
+  public void testGameStateManager() {
+
+    GameStateManager gameStateManager = new GameStateManager();
+
+    assertEquals(0, gameStateManager.getGameStates().size());
+    assertNull(gameStateManager.getCurrentGameState());
+    assertNull(gameStateManager.getGameState(null));
+    assertNull(gameStateManager.getGameState(""));
+    assertNull(gameStateManager.getGameState("Game"));
+
+    final boolean[] calls = {false, false, false, false};
+
+    GameState gamestate1 = new GameState() {
+
+      public void init() {
+        calls[0] = true;
+      }
+
+      public void update(double delta) {
+        calls[1] = true;
+      }
+
+      public void render() {
+        calls[2] = true;
+      }
+
+      public void unset() {
+        calls[3] = true;
+      }
+
+    };
+
+    GameState gamestate2 = new GameState() {
+
+      public void init() {
+
+      }
+
+      public void update(double delta) {
+
+      }
+
+      public void render() {
+
+      }
+
+      public void unset() {
+
+      }
+
+    };
+
+    assertFalse(gameStateManager.addGameState(null, gamestate1));
+    assertTrue(gameStateManager.addGameState("Game", gamestate1));
+    assertFalse(gameStateManager.addGameState("Game", gamestate2));
+    assertTrue(gameStateManager.addGameState("Game2", gamestate2));
+    assertNotNull(gameStateManager.getGameState("Game"));
+    assertEquals(gamestate1, gameStateManager.getGameState("Game"));
+
+    assertTrue(gameStateManager.selectGameState(null));
+    assertFalse(calls[0]);
+    assertTrue(gameStateManager.selectGameState("Game"));
+    assertEquals(gamestate1, gameStateManager.getCurrentGameState());
+    assertTrue(calls[0]);
+    gameStateManager.update(0);
+    gameStateManager.render();
+    assertTrue(calls[1]);
+    assertTrue(calls[2]);
+    assertFalse(gameStateManager.selectGameState("None"));
+    assertEquals(gamestate1, gameStateManager.getCurrentGameState());
+    assertFalse(calls[3]);
+    assertTrue(gameStateManager.selectGameState("Game2"));
+    assertEquals(gamestate2, gameStateManager.getCurrentGameState());
+    assertTrue(calls[3]);
+    assertEquals("Game", gameStateManager.getGameStateName(gamestate1));
+
+    assertFalse(gameStateManager.removeGameState("None"));
+    assertFalse(gameStateManager.removeGameState(null));
+    assertTrue(gameStateManager.removeGameState("Game2"));
+    assertNull(gameStateManager.getCurrentGameState());
+    assertNull(gameStateManager.getGameStateName(gameStateManager.getCurrentGameState()));
 
   }
 
