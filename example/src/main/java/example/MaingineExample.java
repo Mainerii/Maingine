@@ -19,7 +19,11 @@ public class MaingineExample {
     windowSettings.setResizable(true);
     windowSettings.setVisibility(true);
 
-		new Maingine(engineSettings, windowSettings);
+		Maingine maingine = new Maingine();
+    maingine.setSettings(engineSettings, windowSettings);
+
+    maingine.init();
+    maingine.run();
 
 	}
 
