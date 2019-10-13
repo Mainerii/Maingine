@@ -2,14 +2,17 @@ package example.game;
 
 import me.joosua.maingine.engine.Engine;
 import me.joosua.maingine.engine.gamestate.GameState;
+import me.joosua.maingine.glfw.window.Window;
 
 public class Game extends GameState {
 
   private Engine engine;
+  private Window window;
 
-  public Game(Engine engine) {
+  public Game(Engine engine, Window window) {
 
     this.engine = engine;
+    this.window = window;
 
   }
 
@@ -19,7 +22,7 @@ public class Game extends GameState {
 
   public void update(double delta) {
 
-    System.out.println(String.format("UPS: %s, FPS: %s", engine.getUps(), engine.getFps()));
+    window.setTitle(String.format("UPS: %s, FPS: %s", engine.getUps(), engine.getFps()));
 
   }
 

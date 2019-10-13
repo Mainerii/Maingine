@@ -18,8 +18,9 @@ public class MaingineExample {
 
     WindowSettings windowSettings = new WindowSettings();
     windowSettings.setTitle("Maingine example");
-    windowSettings.setResizable(true);
+    windowSettings.setResizable(false);
     windowSettings.setVisibility(true);
+    windowSettings.setSize(720, 480);
 
 		Maingine maingine = new Maingine();
     maingine.setSettings(engineSettings, windowSettings);
@@ -27,7 +28,7 @@ public class MaingineExample {
     maingine.init();
 
     GameStateManager gameStateManager = maingine.getGameStateManager();
-    gameStateManager.addGameState("Game", new Game(maingine.getEngine()));
+    gameStateManager.addGameState("Game", new Game(maingine.getEngine(), maingine.getWindow()));
     maingine.setMainStateName("Game");
 
     maingine.run();

@@ -76,6 +76,12 @@ public class MaingineTest {
     assertFalse(settings.isResizable());
     settings.setResizable(true);
     assertTrue(settings.isResizable());
+    assertNotNull(settings.getSize());
+    assertEquals(0, settings.getSize().x);
+    assertEquals(0, settings.getSize().y);
+    settings.setSize(50, 100);
+    assertEquals(50, settings.getSize().x);
+    assertEquals(100, settings.getSize().y);
 
     window = new Window(settings);
 
@@ -89,11 +95,13 @@ public class MaingineTest {
     assertTrue(window.setVisibility(false));
     assertFalse(window.isVisible());
     assertTrue(window.isResizable());
+    assertTrue(window.setSize(0, 0));
     assertTrue(window.destroy());
     assertFalse(window.setTitle(""));
     assertFalse(window.setVisibility(true));
     assertFalse(window.isVisible());
     assertFalse(window.isResizable());
+    assertNull(window.getSize());
     assertFalse(window.destroy());
     assertEquals(0, window.getWindowID());
 

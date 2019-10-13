@@ -1,6 +1,7 @@
 package me.joosua.maingine.settings;
 
 import me.joosua.maingine.glfw.window.Window;
+import org.joml.Vector2i;
 
 /**
  * <p>WindowSettings is a class for storing all the window's settings.</p>
@@ -15,6 +16,8 @@ public class WindowSettings {
   private String title;
   private boolean visible;
   private boolean resizable;
+  private int width;
+  private int height;
 
   /**
    * <p>Sets the window's title. By default the title is empty.</p>
@@ -117,6 +120,45 @@ public class WindowSettings {
   public boolean isResizable() {
 
     return resizable;
+
+  }
+
+  /**
+   * <p>Set window's size. The size is <code>0</code>
+   * and <code>0</code> by default.</p>
+   *
+   * <p>All <code>0</code>s or below will be replaced with
+   * <code>1</code> later on.</p>
+   *
+   * <p>The size can be changed once the window is created 
+   * with {@link Window#setSize(int, int)}.</p>
+   * 
+   * @param width Window's horizontal size
+   * @param height Window's vertical size
+   * @see #getSize()
+   * @since unreleased
+   */
+  public void setSize(int width, int height) {
+
+    this.width = width;
+    this.height = height;
+
+  }
+
+  /**
+   * <p>Get window's size set with {@link #setSize(int, int)}. The size is <code>0</code>
+   * and <code>0</code> by default.</p>
+   *
+   * <p>The window's current size can be gotten with
+   * {@link Window#getSize()}.</p>
+   *
+   * @return Size vector with <code>x</code> component as width and <code>Y</code> as height.
+   * @see #setSize(int, int)
+   * @since unreleased
+   */
+  public Vector2i getSize() {
+
+    return new Vector2i(width, height);
 
   }
 

@@ -1,8 +1,11 @@
 package me.joosua.maingine.glfw.window;
 
+import java.nio.IntBuffer;
 import me.joosua.maingine.settings.WindowSettings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joml.Vector2i;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -22,6 +25,8 @@ public class Window {
   private String title;
   private boolean visible;
   private boolean resizable;
+  private int width;
+  private int height;
 
   /**
    * <p>Create a window.</p>
@@ -47,12 +52,16 @@ public class Window {
     visible = settings.isVisible();
     resizable = settings.isResizable();
 
+    Vector2i size = settings.getSize();
+    width = size.x == 0 ? 1 : size.x;
+    height = size.y == 0 ? 1 : size.y;
+
     GLFW.glfwDefaultWindowHints();
 
     GLFW.glfwWindowHint(GLFW.GLFW_VISIBLE, 0);
     GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, resizable ? 1 : 0);
 
-    windowID = GLFW.glfwCreateWindow(300, 300, title, 0, 0);
+    windowID = GLFW.glfwCreateWindow(width, height, title, 0, 0);
 
     GLFW.glfwMakeContextCurrent(windowID);
     GLFW.glfwSwapInterval(0);
@@ -277,6 +286,70 @@ public class Window {
   public boolean isResizable() {
 
     return isOpen() && resizable;
+
+  }
+
+  /**
+   * <p>Set the window size.</p>
+   *
+   * <p>Value of <code>0</code> or below will be replaced with <code>1</code>.</p>
+   *
+   * <p>Size will only be changed if {@link #isOpen()} returns <code>TRUE</code>.</p>
+   *
+   * @param width Horizontal size of the window
+   * @param height Vertical size of the window
+   * @see #getSize() 
+   * @return Whether the size was changed.
+   * @since unreleased
+   */
+  public boolean setSize(int width, int height) {
+
+    if (isOpen()) {
+
+      width = width <= 0 ? 1 : width;
+      height = height <= 0 ? 1 : height;
+
+      this.width = width;
+      this.height = height;
+
+      GLFW.glfwSetWindowSize(windowID, width, height);
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  /**
+   * <p>Get the window's size.</p>
+   *
+   * <p>The value is only correct if {@link #pollEvents()} has been called
+   * after size change. {@link #pollEvents()} is called on every engine update and
+   * should not be called elsewhere.</p>
+   *
+   * <p>If {@link #isOpen()} doesn't return <code>TRUE</code>,
+   * <code>NULL</code> will be returned.</p>
+   *
+   * @see #setSize(int, int)
+   * @return The current window size or <code>NULL</code> if window is not open.
+   * @since unreleased
+   */
+  public Vector2i getSize() {
+
+    if (isOpen()) {
+
+      IntBuffer width = BufferUtils.createIntBuffer(1);
+      IntBuffer height = BufferUtils.createIntBuffer(1);
+
+      GLFW.glfwGetWindowSize(windowID, width, height);
+
+      return new Vector2i(width.get(), height.get());
+
+    }
+
+    return null;
 
   }
 
