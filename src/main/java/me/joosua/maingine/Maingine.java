@@ -53,7 +53,7 @@ public class Maingine {
    * @param engineSettings Settings for the engine. Can't be null.
    * @param windowSettings Settings for the window. Can't be null.
    * @see #init()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void setSettings(EngineSettings engineSettings, WindowSettings windowSettings) {
 
@@ -75,7 +75,7 @@ public class Maingine {
    * before this is called.</p>
    *
    * @see #setSettings(EngineSettings, WindowSettings)
-   * @since unreleased
+   * @since 0.0.3
    */
   public void init() {
 
@@ -116,7 +116,7 @@ public class Maingine {
    * <p>Cleanup will be done immediately after this.</p>
    *
    * @see #stop()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void run() {
 
@@ -143,7 +143,7 @@ public class Maingine {
    * <p>Cleanup will be perfomed after the engine is not running.</p>
    *
    * @see #run()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void stop() {
 
@@ -156,7 +156,7 @@ public class Maingine {
    *
    * <p>This will destroy the window and terminate GLFW from the thread.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   private void cleanup() {
 
@@ -173,7 +173,7 @@ public class Maingine {
    * initialization with {@link #init()}.</p>
    *
    * @return Get Maingine's current engine instance or <code>NULL</code> if none.
-   * @since unreleased
+   * @since 0.0.3
    */
   public Engine getEngine() {
 
@@ -188,7 +188,7 @@ public class Maingine {
    * initialization with {@link #init()}.</p>
    *
    * @return Get Maingine's current window instance or <code>NULL</code> if none.
-   * @since unreleased
+   * @since 0.0.3
    */
   public Window getWindow() {
 

@@ -80,7 +80,7 @@ public class Window {
    * <p>Not calling this constantly might cause the
    * window to freeze and other unwanted behavior.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   public void pollEvents() {
 
@@ -94,7 +94,7 @@ public class Window {
    * <p>Buffers will be swapped here. The previously drawn one will be shown and new
    * one prepared for drawing.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   public void render() {
 

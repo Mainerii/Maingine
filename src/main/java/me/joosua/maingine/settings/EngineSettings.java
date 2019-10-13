@@ -8,7 +8,7 @@ import me.joosua.maingine.engine.Engine;
  * <p>Nothing here affects the engine immediately but the values can be passed
  * for {@link me.joosua.maingine.engine.Engine Engine} when creating one.</p>
  *
- * @since unreleased
+ * @since 0.0.3
  */
 public class EngineSettings {
 
@@ -26,7 +26,7 @@ public class EngineSettings {
    *
    * @param fps Targeted frames per second
    * @see #getTargetFps()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void setTargetFps(double fps) {
 
@@ -45,7 +45,7 @@ public class EngineSettings {
    *
    * @return Targeted frames per second
    * @see #setTargetFps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
 
   public double getTargetFps() {
@@ -65,7 +65,7 @@ public class EngineSettings {
    *
    * @param ups Targeted updates per second
    * @see #getTargetUps()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void setTargetUps(double ups) {
 
@@ -84,7 +84,7 @@ public class EngineSettings {
    *
    * @return Targeted updates per second
    * @see #setTargetUps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
   public double getTargetUps() {
 

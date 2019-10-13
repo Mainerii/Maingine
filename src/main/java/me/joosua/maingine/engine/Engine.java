@@ -14,7 +14,7 @@ import org.lwjgl.glfw.GLFW;
  *
  * <p>Game states will be called from here.</p>
  *
- * @since unreleased
+ * @since 0.0.3
  */
 public class Engine {
 
@@ -40,7 +40,7 @@ public class Engine {
    *
    * @param window The window to be used with engine.
    * @see #run
-   * @since unreleased
+   * @since 0.0.3
    */
   public Engine(EngineSettings settings, Window window) {
 
@@ -61,7 +61,7 @@ public class Engine {
    * <p>This function will take the control of the callers thread. No
    * return until stopping the engine.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   public void run() {
 
@@ -135,7 +135,7 @@ public class Engine {
    *
    * <p>This should be called before {@link #update(double)}.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   private void processInput() {
 
@@ -153,7 +153,7 @@ public class Engine {
    * <p>This should be called after {@link #processInput()}.</p>
    *
    * @param delta Time each update takes (Multiply time-related values with this).
-   * @since unreleased
+   * @since 0.0.3
    */
   private void update(double delta) {
 
@@ -164,7 +164,7 @@ public class Engine {
    *
    * <p>This should be called after {@link #update(double)}.</p>
    *
-   * @since unreleased
+   * @since 0.0.3
    */
   private void render() {
 
@@ -182,7 +182,7 @@ public class Engine {
    *
    * @see #refuseCloseRequest()
    * @see #isCloseRequested()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void stop() {
 
@@ -198,7 +198,7 @@ public class Engine {
    *
    * @see #stop
    * @see #isCloseRequested()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void refuseCloseRequest() {
 
@@ -217,7 +217,7 @@ public class Engine {
    * @return <code>TRUE</code> if the engine close is requested, <code>FALSE</code> if not.
    * @see #stop()
    * @see #isCloseRequested()
-   * @since unreleased
+   * @since 0.0.3
    */
   public boolean isCloseRequested() {
 
@@ -234,7 +234,7 @@ public class Engine {
    * @param fps Targeted frames per second
    * @see #getFps()
    * @see #getTargetFps()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void setTargetFps(double fps) {
 
@@ -256,7 +256,7 @@ public class Engine {
    *
    * @return Targeted frames per second
    * @see #setTargetFps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
   public double getTargetFps() {
 
@@ -272,7 +272,7 @@ public class Engine {
    *
    * @return Current rate of frames per second.
    * @see #setTargetFps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
   public int getFps() {
 
@@ -289,7 +289,7 @@ public class Engine {
    * @param ups Targeted updates per second
    * @see #getUps()
    * @see #getTargetFps()
-   * @since unreleased
+   * @since 0.0.3
    */
   public void setTargetUps(double ups) {
 
@@ -313,7 +313,7 @@ public class Engine {
    *
    * @return Targeted updates per second
    * @see #setTargetUps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
   public double getTargetUps() {
 
@@ -329,7 +329,7 @@ public class Engine {
    *
    * @return Current rate of updates per second.
    * @see #setTargetUps(double)
-   * @since unreleased
+   * @since 0.0.3
    */
   public int getUps() {
 
