@@ -136,7 +136,7 @@ public class WindowSettings {
    * @param width Window's horizontal size
    * @param height Window's vertical size
    * @see #getSize()
-   * @since unreleased
+   * @since 0.0.4
    */
   public void setSize(int width, int height) {
 
@@ -154,7 +154,7 @@ public class WindowSettings {
    *
    * @return Size vector with <code>x</code> component as width and <code>Y</code> as height.
    * @see #setSize(int, int)
-   * @since unreleased
+   * @since 0.0.4
    */
   public Vector2i getSize() {
 

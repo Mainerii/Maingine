@@ -333,7 +333,7 @@ public class Window {
    * @param height Vertical size of the window
    * @see #getSize() 
    * @return Whether the size was changed.
-   * @since unreleased
+   * @since 0.0.4
    */
   public boolean setSize(int width, int height) {
 
@@ -367,7 +367,7 @@ public class Window {
    *
    * @see #setSize(int, int)
    * @return The current window size or <code>NULL</code> if window is not open.
-   * @since unreleased
+   * @since 0.0.4
    */
   public Vector2i getSize() {
 

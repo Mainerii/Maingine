@@ -5,7 +5,7 @@ public abstract class GameState {
   /**
    * <p>Init is called when the game state is selected.</p>
    *
-   * @since unreleased
+   * @since 0.0.4
    */
   public abstract void init();
 
@@ -13,7 +13,7 @@ public abstract class GameState {
    * <p>Update is called on every tick.</p>
    *
    * @param delta Time each update takes (Multiply time-related values with this).
-   * @since unreleased
+   * @since 0.0.4
    */
   public abstract void update(double delta);
 
@@ -22,14 +22,14 @@ public abstract class GameState {
    *
    * <p>All draw calls should be made here.</p>
    *
-   * @since unreleased
+   * @since 0.0.4
    */
   public abstract void render();
 
   /**
    * <p>Unset is called when the game state is changed to another.</p>
    *
-   * @since unreleased
+   * @since 0.0.4
    */
   public abstract void unset();
 

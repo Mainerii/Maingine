@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Maingine {
 
-  public static final String VERSION = "0.0.2";
+  public static final String VERSION = "0.0.4";
   public static boolean DEBUG = false;
 
   private static Logger logger;
@@ -182,7 +182,7 @@ public class Maingine {
    * <p>Its init is called will be called on {@link #run()}.</p>
    *
    * @param name Name of the first game state to be used
-   * @since unreleased
+   * @since 0.0.4
    */
   public void setMainStateName(String name) {
 
@@ -196,7 +196,7 @@ public class Maingine {
    * <p>GameStateManager is used to control game states.</p>
    *
    * @return The current GameStateManager instance
-   * @since unreleased
+   * @since 0.0.4
    */
   public GameStateManager getGameStateManager() {
 

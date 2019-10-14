@@ -4,28 +4,28 @@
 
 A 3D Game Engine
 
-<h3>Statistics (13.10.2019, version 0.0.3)</h3>
+<h3>Statistics (14.10.2019, version 0.0.4)</h3>
 
 <h4>Maingine</h4>
 
-| Language | Files | Lines    | Blank lines | Comment lines | Code lines |
-| -------- | ----- | -------- | ----------- | ------------- | ---------- |
-| Java     | 8     | 1246     | 283         | 574           | 389        |
-| **SUM**  | **8** | **1246** | **283**     | **574**       | **389**    |
+| Language | Files  | Lines    | Blank lines | Comment lines | Code lines |
+| -------- | ------ | -------- | ----------- | ------------- | ---------- |
+| Java     | 10     | 1707     | 393         | 773           | 541        |
+| **SUM**  | **10** | **1707** | **393**     | **773**       | **541**    |
 
 <h4>Tests</h4>
 
 | Language | Files | Lines   | Blank lines | Comment lines | Code lines |
 | -------- | ----- | ------- | ----------- | ------------- | ---------- |
-| Java     | 1     | 151     | 37          | 0             | 114        |
-| **SUM**  | **1** | **151** | **37**      | **0**         | **114**    |
+| Java     | 1     | 247     | 61          | 0             | 186        |
+| **SUM**  | **1** | **247** | **61**      | **0**         | **186**    |
 
 <h4>Example</h4>
 
 | Language | Files | Lines  | Blank lines | Comment lines | Code lines |
 | -------- | ----- | ------ | ----------- | ------------- | ---------- |
-| Java     | 1     | 30     | 10          | 0             | 20         |
-| **SUM**  | **1** | **30** | **10**      | **0**         | **20**     |
+| Java     | 1     | 79     | 29          | 0             | 50         |
+| **SUM**  | **1** | **79** | **29**      | **0**         | **50**     |
 
 <h3>Maingine development</h3>
 

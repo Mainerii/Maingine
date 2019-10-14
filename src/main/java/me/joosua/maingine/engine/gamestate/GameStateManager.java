@@ -21,7 +21,7 @@ public class GameStateManager {
    * nothing will be done.</p>
    *
    * @param delta Time each update takes (multiply time-related values with this).
-   * @since unreleased
+   * @since 0.0.4
    */
   public void update(double delta) {
 
@@ -38,7 +38,7 @@ public class GameStateManager {
    * <p>If the current game state is <code>NULL</code>,
    * nothing will be done.</p>
    *
-   * @since unreleased
+   * @since 0.0.4
    */
   public void render() {
 
@@ -58,7 +58,7 @@ public class GameStateManager {
    * @param gameState The new game state
    * @return Whether the game state was added.
    * @see #removeGameState(String)
-   * @since unreleased
+   * @since 0.0.4
    */
   public boolean addGameState(String name, GameState gameState) {
 
@@ -93,7 +93,7 @@ public class GameStateManager {
    * @param name Name of the game state to be removed.
    * @return Whether the game state was removed or not.
    * @see #addGameState(String, GameState) 
-   * @since unreleased
+   * @since 0.0.4
    */
   public boolean removeGameState(String name) {
 
@@ -120,7 +120,7 @@ public class GameStateManager {
    * @param name Name of the game state wanted
    * @return The game state or <code>NULL</code> if not found
    * @see #getGameStateName(GameState)
-   * @since unreleased
+   * @since 0.0.4
    */
   public GameState getGameState(String name) {
 
@@ -137,7 +137,7 @@ public class GameStateManager {
    * @param gameState The game state to the name of
    * @return The name of the game state given or <code>NULL</code> if not found.
    * @see #getGameState(String) 
-   * @since unreleased
+   * @since 0.0.4
    */
   public String getGameStateName(GameState gameState) {
 
@@ -167,7 +167,7 @@ public class GameStateManager {
    * @param name Name of the game state to be used.
    * @return Whether the game state was changed or not.
    * @see #getCurrentGameState() 
-   * @since unreleased
+   * @since 0.0.4
    */
   public boolean selectGameState(String name) {
 
@@ -207,7 +207,7 @@ public class GameStateManager {
    *
    * @return The current game state or <code>NULL</code> if no game state in use.
    * @see #selectGameState(String)
-   * @since unreleased
+   * @since 0.0.4
    */
   public GameState getCurrentGameState() {
 
@@ -222,6 +222,7 @@ public class GameStateManager {
    * unexpected behaviour.</p>
    *
    * @return List of the game states
+   * @since 0.0.4
    */
   public final HashMap<String, GameState> getGameStates() {
 
