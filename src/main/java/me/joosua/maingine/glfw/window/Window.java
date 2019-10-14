@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL;
 
 /**
  * <p>Window class takes care of everything to do with windows.</p>
@@ -34,6 +35,9 @@ public class Window {
    * <p>This is the only way to create the window properly. Do not use GLFW functions
    * by themselves to create the window for correct Maingine usage. Other implementations
    * will cause problems if you don't what you are doing.</p>
+   *
+   * <p>Creating a window will automatically make it's OpenGL context current
+   * (same as calling {@link #selectWindow()}).</p>
    *
    * @param settings Initial values for window.
    * @since 0.0.2
@@ -72,6 +76,10 @@ public class Window {
       return;
 
     }
+
+    selectWindow();
+
+    GL.createCapabilities();
 
     if (visible) {
       GLFW.glfwShowWindow(windowID);
@@ -153,6 +161,31 @@ public class Window {
   public boolean isCloseRequested() {
 
     return isOpen() ? GLFW.glfwWindowShouldClose(windowID) : true;
+
+  }
+
+  /**
+   * <p>Select window for drawing.</p>
+   *
+   * <p>This makes the OpenGL context of the window
+   * the current one.</p>
+   *
+   * <p>The context is only changed if {@link #isOpen()} returns
+   * <code>TRUE</code>.</p>
+   *
+   * @return Whether the window was selected.
+   */
+  public boolean selectWindow() {
+
+    if (isOpen()) {
+
+      GLFW.glfwMakeContextCurrent(windowID);
+
+      return true;
+
+    }
+
+    return false;
 
   }
 
