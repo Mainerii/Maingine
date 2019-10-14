@@ -184,6 +184,7 @@ public class GameStateManager {
 
     if (name == null) {
 
+      logger.info("Current game state deselected!");
       this.currentGameState = null;
       return true;
 
@@ -194,6 +195,8 @@ public class GameStateManager {
     if (currentGameState != null) {
       currentGameState.init();
     }
+
+    logger.info("Current game state changed to '" + name + "'");
 
     return true;
 
