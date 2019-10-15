@@ -75,7 +75,7 @@ public class Maingine {
   }
 
   /**
-   * <p>Second phase of Maingine initilization.</p>
+   * <p>Second phase of Maingine initialization.</p>
    *
    * <p>Settings must be set with {@link #setSettings(EngineSettings, WindowSettings)}
    * before this is called.</p>
